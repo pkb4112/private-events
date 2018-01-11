@@ -1,0 +1,18 @@
+<h1>Events#Show</h1>
+Event: <%=@event.name%>
+</br>
+Where: <%=@event.location%>
+</br>
+When: <%=@event.date%>
+</br>
+Hosted by: <%=@event.host.name%>
+</br>
+</br>
+
+<b>Guests:</b>
+<% if @event.guests.any? %>
+ <%= render @event.guests %>
+ <% else %>
+  </br>
+  No Guests Currently Attending This Event
+ <%end%>

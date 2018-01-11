@@ -1,2 +1,7 @@
 <h1>StaticPages#home</h1>
 <p>Private Events</p>
+<%if logged_in? %>
+  <%= link_to 'Create Event', new_event_path %>
+<%end%>
+<%= link_to 'View All Events', events_path %>
+
