@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, :events
 
   root 'static_pages#home'
+  delete '/join', to: 'events#leave'
   get '/join', to: 'events#join'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'

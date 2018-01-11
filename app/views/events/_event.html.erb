@@ -5,4 +5,6 @@
 	</br>
 	<%=event.date%>
     </br>
+    <%= link_to 'Join Event', join_path(id: event.id) if logged_in? %>
+
 </li>

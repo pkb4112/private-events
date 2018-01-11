@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-	
 
 
   def new
@@ -20,7 +19,15 @@ class UsersController < ApplicationController
   
   def show
   	@user = User.find(params[:id])
-  	@hosted_events = @user.hosted_events
+  	
+  	#Hosted
+  	@hosted_events = @user.hosted_events.past
+  	#Hosting
+  	@hosting_events = @user.hosted_events.future
+  	#Attended
+    @attended_events = @user.attended_events.past
+  	#Attending
+  	@attending_events = @user.attended_events.future
   end
 
   def destroy

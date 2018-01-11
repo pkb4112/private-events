@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def create
   	@event = current_user.hosted_events.new(event_params)
   	if @event.save 
+      @event.guests << current_user 
   		flash[:success] = 'Event Created Successfully'
   		redirect_to @event
   	else
@@ -23,16 +24,31 @@ class EventsController < ApplicationController
 
   def show
   	@event = Event.find(params[:id])
+    @guests = @event.guests
   end
 
   def join
     @event = Event.find(params[:id])
-    @event.guests << current_user
-    flash[:sucess] = 'You have joined the event'
-    redirect_to @event 
+    if !attending?(@event)
+      @event.guests << current_user
+      flash[:sucess] = 'You have joined the event'
+      redirect_to @event 
+    else
+      flash[:danger] = 'You are already attending this event'
+      redirect_back fallback_location: root_path
+    end
+
   end
 
   def destroy
+  end
+
+  def attending?(event)
+    if event.guests.include?(current_user)
+      return true
+    else
+      return false
+    end
   end
 
   private
@@ -47,6 +63,12 @@ class EventsController < ApplicationController
   		redirect_to login_url
   	end
   end
+
+
+ 
+
+  
+
 
 
 end

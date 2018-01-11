@@ -11,7 +11,7 @@ Hosted by: <%=@event.host.name%>
 
 <b>Guests:</b>
 <% if @event.guests.any? %>
- <%= render @event.guests %>
+ <%= render 'guest' %>
  <% else %>
   </br>
   No Guests Currently Attending This Event

@@ -3,10 +3,35 @@
 <p><%=@user.email%></p>
 <p><%=@user.name%></p>
 
+
+
+<% if @hosting_events %>
+    <h4> Events <%=@user.name%> is hosting: </h4>
+	<ol>
+	  <%= render @hosting_events %>
+	</ol>
+<%end%>
+
 <% if @hosted_events %>
-    <h4> Events where <%=@user.name%> is a host: </h4>
+    <h4> Events <%=@user.name%> hosted: </h4>
 	<ol>
 	  <%= render @hosted_events %>
+	</ol>
+<%end%>
+
+
+
+<% if @attending_events %>
+    <h4> Events <%=@user.name%> is attending: </h4>
+	<ol>
+	  <%= render @attending_events %>
+	</ol>
+<%end%>
+
+<% if @attended_events %>
+    <h4> Events <%=@user.name%> has attended: </h4>
+	<ol>
+	  <%= render @attended_events %>
 	</ol>
 <%end%>
 
